@@ -15,12 +15,15 @@ public class ArrayDuplicates {
 
 	public static void main(String[] args) {
 		removeDuplicatesWithNoextraSpace(randomIntegers);
+		removeDuplicatesIteratingOnce(randomIntegers);
+		removeDuplicatesIteratingOnceJava8(randomIntegers);
 	}
 
 
 	// No additional space used but comparing adjacent elements. Going through
 	// the array twice
 	// Time complexity: O(N2)
+	// Retaining orginial order
 	public static int[] removeDuplicatesWithNoextraSpace(int[] arr) {
 
 		int end = arr.length;
@@ -39,10 +42,12 @@ public class ArrayDuplicates {
 		}
 
 		int[] whitelist = new int[end];
+		System.out.println("************Solution 1***********");
 		for (int i = 0; i < end; i++) {
 			whitelist[i] = arr[i];
 			System.out.println(whitelist[i]);
 		}
+		System.out.println("\n\n");
 
 		return whitelist;
 	}
@@ -56,15 +61,19 @@ public class ArrayDuplicates {
 		for (int i = 0; i < end; i++) {
 			set.add(arr[i]);
 		}
+		System.out.println("************Solution 2***********");
 		Iterator<Integer> it = set.iterator();
 		while (it.hasNext()) {
 			System.out.println(it.next());
 		}
+		System.out.println("\n\n");
 	}
 
 	// Improved solution as you iterate only once on the array
+	//Retains original order
 	public static void removeDuplicatesIteratingOnceJava8(int[] arr) {
 		int[] result = Arrays.stream(arr).distinct().toArray();
+		System.out.println("************Solution 3***********");
 		Arrays.stream(result).forEach(System.out::println);
 
 	}
